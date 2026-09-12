@@ -1,0 +1,348 @@
+{
+  "policy": "Batch recalibration only. Promote a new FinBERT head when human labels grow and hold-out macro-F1 does not regress. Never retrain on every quarter drop-in.",
+  "active_model_id": null,
+  "models": [],
+  "runs": [
+    {
+      "ts": "2026-09-12T11:03:00Z",
+      "kind": "auto_ensure",
+      "actions": [
+        "noop"
+      ],
+      "desk_ready": true,
+      "errors": []
+    },
+    {
+      "ts": "2026-09-12T10:54:03Z",
+      "kind": "auto_ensure",
+      "actions": [
+        "noop"
+      ],
+      "desk_ready": true,
+      "errors": []
+    },
+    {
+      "ts": "2026-09-12T10:53:47Z",
+      "kind": "auto_ensure",
+      "actions": [
+        "noop"
+      ],
+      "desk_ready": true,
+      "errors": []
+    },
+    {
+      "ts": "2026-09-12T10:50:08Z",
+      "kind": "auto_ensure",
+      "actions": [
+        "noop"
+      ],
+      "desk_ready": true,
+      "errors": []
+    },
+    {
+      "ts": "2026-09-12T10:49:21Z",
+      "kind": "auto_ensure",
+      "actions": [
+        "noop"
+      ],
+      "desk_ready": true,
+      "errors": []
+    },
+    {
+      "ts": "2026-09-12T10:49:20Z",
+      "kind": "auto_ensure",
+      "actions": [
+        "noop"
+      ],
+      "desk_ready": true,
+      "errors": []
+    },
+    {
+      "ts": "2026-09-12T10:35:37Z",
+      "kind": "auto_ensure",
+      "actions": [
+        "noop"
+      ],
+      "desk_ready": true,
+      "errors": []
+    },
+    {
+      "ts": "2026-09-12T10:35:17Z",
+      "kind": "auto_ensure",
+      "actions": [
+        "noop"
+      ],
+      "desk_ready": true,
+      "errors": []
+    },
+    {
+      "ts": "2026-09-12T09:11:44Z",
+      "kind": "auto_ensure",
+      "actions": [
+        "sync",
+        "freeze"
+      ],
+      "desk_ready": true,
+      "errors": []
+    },
+    {
+      "ts": "2026-09-12T09:11:43Z",
+      "kind": "sync",
+      "db": "/Users/susanavenda/Downloads/boe-earnings-demo/data/desk.sqlite",
+      "n_episodes": 2
+    },
+    {
+      "ts": "2026-09-12T09:04:47Z",
+      "kind": "auto_ensure",
+      "actions": [
+        "noop"
+      ],
+      "desk_ready": true,
+      "errors": []
+    },
+    {
+      "ts": "2026-09-11T23:44:10Z",
+      "kind": "auto_ensure",
+      "actions": [
+        "noop"
+      ],
+      "desk_ready": true,
+      "errors": []
+    },
+    {
+      "ts": "2026-09-11T23:44:09Z",
+      "kind": "auto_ensure",
+      "actions": [
+        "noop"
+      ],
+      "desk_ready": true,
+      "errors": []
+    },
+    {
+      "ts": "2026-09-11T23:44:08Z",
+      "kind": "auto_ensure",
+      "actions": [
+        "noop"
+      ],
+      "desk_ready": true,
+      "errors": []
+    },
+    {
+      "ts": "2026-09-11T23:44:08Z",
+      "kind": "auto_ensure",
+      "actions": [
+        "noop"
+      ],
+      "desk_ready": true,
+      "errors": []
+    },
+    {
+      "ts": "2026-09-11T23:44:08Z",
+      "kind": "auto_ensure",
+      "actions": [
+        "noop"
+      ],
+      "desk_ready": true,
+      "errors": []
+    },
+    {
+      "ts": "2026-09-11T23:44:08Z",
+      "kind": "auto_ensure",
+      "actions": [
+        "noop"
+      ],
+      "desk_ready": true,
+      "errors": []
+    },
+    {
+      "ts": "2026-09-11T23:44:06Z",
+      "kind": "auto_ensure",
+      "actions": [
+        "noop"
+      ],
+      "desk_ready": true,
+      "errors": []
+    },
+    {
+      "ts": "2026-09-11T23:43:46Z",
+      "kind": "auto_ensure",
+      "actions": [
+        "noop"
+      ],
+      "desk_ready": true,
+      "errors": []
+    },
+    {
+      "ts": "2026-09-11T23:43:46Z",
+      "kind": "auto_ensure",
+      "actions": [
+        "noop"
+      ],
+      "desk_ready": true,
+      "errors": []
+    },
+    {
+      "ts": "2026-09-11T23:43:45Z",
+      "kind": "auto_ensure",
+      "actions": [
+        "noop"
+      ],
+      "desk_ready": true,
+      "errors": []
+    },
+    {
+      "ts": "2026-09-11T23:42:25Z",
+      "kind": "auto_ensure",
+      "actions": [
+        "noop"
+      ],
+      "desk_ready": true,
+      "errors": []
+    },
+    {
+      "ts": "2026-09-11T23:39:53Z",
+      "kind": "recalibrate_check",
+      "retrain_recommended": false,
+      "n_human_labels": 20,
+      "n_new_since_promote": 20
+    },
+    {
+      "ts": "2026-09-11T23:39:36Z",
+      "kind": "recalibrate_check",
+      "retrain_recommended": false,
+      "n_human_labels": 20,
+      "n_new_since_promote": 20
+    },
+    {
+      "ts": "2026-09-11T23:39:34Z",
+      "kind": "auto_ensure",
+      "actions": [
+        "product_scripts",
+        "sync"
+      ],
+      "desk_ready": true,
+      "errors": []
+    },
+    {
+      "ts": "2026-09-11T23:39:34Z",
+      "kind": "product",
+      "scripts": [
+        "build_supervisory_episode.py",
+        "generate_pra_note.py",
+        "build_metric_briefs.py"
+      ],
+      "n_episodes": 2,
+      "db": "/Users/susanavenda/Downloads/boe-earnings-demo/data/desk.sqlite"
+    },
+    {
+      "ts": "2026-09-11T23:39:34Z",
+      "kind": "sync",
+      "db": "/Users/susanavenda/Downloads/boe-earnings-demo/data/desk.sqlite",
+      "n_episodes": 2
+    },
+    {
+      "ts": "2026-09-11T23:39:31Z",
+      "kind": "auto_ensure",
+      "actions": [
+        "sync"
+      ],
+      "desk_ready": true,
+      "errors": []
+    },
+    {
+      "ts": "2026-09-11T23:39:31Z",
+      "kind": "sync",
+      "db": "/Users/susanavenda/Downloads/boe-earnings-demo/data/desk.sqlite",
+      "n_episodes": 2
+    },
+    {
+      "ts": "2026-09-11T23:39:16Z",
+      "kind": "auto_ensure",
+      "actions": [
+        "noop"
+      ],
+      "desk_ready": true,
+      "errors": []
+    },
+    {
+      "ts": "2026-09-11T23:39:06Z",
+      "kind": "auto_ensure",
+      "actions": [
+        "noop"
+      ],
+      "desk_ready": true,
+      "errors": []
+    },
+    {
+      "ts": "2026-09-11T23:38:56Z",
+      "kind": "recalibrate_check",
+      "retrain_recommended": false,
+      "n_human_labels": 20,
+      "n_new_since_promote": 20
+    },
+    {
+      "ts": "2026-09-11T23:38:56Z",
+      "kind": "auto_ensure",
+      "actions": [
+        "sync"
+      ],
+      "desk_ready": true,
+      "errors": []
+    },
+    {
+      "ts": "2026-09-11T23:38:56Z",
+      "kind": "sync",
+      "db": "/Users/susanavenda/Downloads/boe-earnings-demo/data/desk.sqlite",
+      "n_episodes": 2
+    },
+    {
+      "ts": "2026-09-11T23:34:58Z",
+      "kind": "recalibrate_check",
+      "retrain_recommended": false,
+      "n_human_labels": 20,
+      "n_new_since_promote": 20
+    },
+    {
+      "ts": "2026-09-11T23:34:56Z",
+      "kind": "auto_ensure",
+      "actions": [
+        "product_scripts",
+        "sync"
+      ],
+      "desk_ready": true,
+      "errors": []
+    },
+    {
+      "ts": "2026-09-11T23:34:56Z",
+      "kind": "product",
+      "scripts": [
+        "build_supervisory_episode.py",
+        "generate_pra_note.py",
+        "build_metric_briefs.py"
+      ],
+      "n_episodes": 2,
+      "db": "/Users/susanavenda/Downloads/boe-earnings-demo/data/desk.sqlite"
+    },
+    {
+      "ts": "2026-09-11T23:34:56Z",
+      "kind": "sync",
+      "db": "/Users/susanavenda/Downloads/boe-earnings-demo/data/desk.sqlite",
+      "n_episodes": 2
+    },
+    {
+      "ts": "2026-09-11T23:34:54Z",
+      "kind": "auto_ensure",
+      "actions": [
+        "sync"
+      ],
+      "desk_ready": true,
+      "errors": []
+    },
+    {
+      "ts": "2026-09-11T23:34:54Z",
+      "kind": "sync",
+      "db": "/Users/susanavenda/Downloads/boe-earnings-demo/data/desk.sqlite",
+      "n_episodes": 2
+    }
+  ]
+}

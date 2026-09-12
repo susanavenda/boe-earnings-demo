@@ -1,0 +1,14 @@
+{
+  "db": "/Users/susanavenda/Downloads/boe-earnings-demo/data/desk.sqlite",
+  "frozen": "/Users/susanavenda/Downloads/boe-earnings-demo/data/snapshots/latest/desk.sqlite",
+  "frozen_bytes": 118784,
+  "n_episodes": 2,
+  "default_episode": "HSBC 2025-interim (H1)",
+  "walkthrough": [
+    "Episodes",
+    "Evidence",
+    "Peer & protocol",
+    "PRA note"
+  ],
+  "note": "Offline-ok frozen pack. Desk defaults to HSBC H1 WATCH."
+}
