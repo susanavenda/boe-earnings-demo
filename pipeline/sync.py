@@ -44,6 +44,12 @@ def _copy_pipeline_db() -> dict:
         "sentiment_by_topic": "sentiment_by_topic",
         "struct_vs_unstruct": "struct_vs_unstruct",
         "metric_briefs_faithful": "metric_briefs_faithful",
+        "state_summary": "state_summary",
+        "qa_pairs": "qa_pairs",
+        "behavioural_signals": "behavioural_signals",
+        "prudential_map": "prudential_map",
+        "corpus_manifest": "corpus_manifest",
+        "numeric_claims": "numeric_claims",
     }
 
     dst.execute(

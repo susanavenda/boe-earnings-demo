@@ -477,6 +477,35 @@ with tab_evidence:
     else:
         st.caption("No quotes stored.")
 
+    st.markdown('<div class="section-h">Answering behaviour (M6)</div>', unsafe_allow_html=True)
+    ss = _table("state_summary", None, mt)
+    if ss is not None and not ss.empty:
+        view = ss.copy()
+        if ep.get("bank") and "bank" in view.columns:
+            bank_mask = view["bank"].astype(str).str.lower() == str(ep["bank"]).lower()
+            if bank_mask.any():
+                view = view[bank_mask]
+        cols_s = [
+            c
+            for c in [
+                "bank",
+                "quarter",
+                "n",
+                "mean_directness",
+                "metric_coverage_rate",
+                "substitution_rate",
+                "total_income",
+                "operating_costs",
+                "credit_impairment",
+                "cet1_ratio",
+            ]
+            if c in view.columns
+        ]
+        st.dataframe(view[cols_s], use_container_width=True, hide_index=True)
+        st.caption("n = Q&A pairs. Substitution is avoidance-as-behaviour, not a FinBERT label.")
+    else:
+        st.caption("No state_summary in this pack — re-run Pipeline `scripts/build_a1_evidence.py`.")
+
 with tab_topics:
     topics = _table("topic_share", eid, mt)
     st.markdown('<div class="section-h">Topic share</div>', unsafe_allow_html=True)
