@@ -218,7 +218,19 @@ def list_episodes(db: Path | None = None) -> list[dict]:
         rows = conn.execute(
             "SELECT payload_json FROM episodes ORDER BY id"
         ).fetchall()
-    return [json.loads(r["payload_json"]) for r in rows]
+    episodes = [json.loads(r["payload_json"]) for r in rows]
+
+    def sort_key(ep: dict) -> tuple:
+        bank = str(ep.get("bank") or "").lower()
+        period = str(ep.get("calendar_period") or ep.get("quarter") or "").lower()
+        # A2 proof episode first
+        if bank == "hsbc" and ("2025-h1" in period or "2025-interim" in period):
+            return (0, period)
+        if bank == "hsbc":
+            return (1, period)
+        return (2, period)
+
+    return sorted(episodes, key=sort_key)
 
 
 def read_table(

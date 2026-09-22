@@ -25,4 +25,5 @@ Pitch script: sibling `Boe_Earnings_Insights_Workspace/docs/assignment2/A2_pitch
 
 - Live DB: `data/desk.sqlite`
 - Frozen copy: `data/snapshots/latest/desk.sqlite`
-- Ops → Refresh only when Pipeline `boe.sqlite` was rebuilt
+- Sidebar **Refresh pack from factory** copies Pipeline `boe.sqlite` → `desk.sqlite`
+- Ops → Rebuild episodes + PRA only if Stage 8/9 output is missing

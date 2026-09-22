@@ -206,10 +206,27 @@ def _gate_bar(have: int, need: int, label: str) -> None:
     st.progress(pct)
 
 
+def request_refresh() -> None:
+    """Copy factory boe.sqlite → desk.sqlite on the next rerun."""
+    st.session_state.force_refresh = True
+    st.rerun()
+
+
+def render_refresh_button() -> None:
+    if st.button(
+        "Refresh pack from factory",
+        use_container_width=True,
+        type="secondary",
+        help="Copies Pipeline data/boe.sqlite into this desk. Run the notebook first if PDFs or Excel changed.",
+    ):
+        request_refresh()
+    st.caption(
+        "Does not re-run the notebook. Factory work lives in boe.sqlite — "
+        "run Stages 1–9, then click this to copy the pack here."
+    )
+
+
 def render_ops_panel(status: dict) -> None:
-    if st.button("Refresh desk data", use_container_width=True):
-        st.session_state.force_refresh = True
-        st.rerun()
     if st.button("Rebuild episodes + PRA", use_container_width=True):
         with st.spinner("Rebuilding…"):
             st.session_state.desk_status = ensure_desk(
@@ -255,7 +272,7 @@ def render_ops_panel(status: dict) -> None:
         f"""
         <div class="admin-card">
           <div class="k">Active model</div>
-          <div class="v">{_esc(reg.get("active_model_id") or "None — Pipeline defaults")}</div>
+          <div class="v">{_esc(reg.get("active_model_id") or "Zero-shot FinBERT — none promoted")}</div>
         </div>
         """,
         unsafe_allow_html=True,
@@ -301,9 +318,10 @@ st.markdown(
 
 if not status.get("desk_ready") and not DB_PATH.exists():
     st.error(
-        "No supervisory pack yet. Run the Pipeline once, then use **Ops → Refresh**."
+        "No supervisory pack yet. Run the Pipeline notebook once, then click **Refresh pack from factory**."
     )
     with st.sidebar:
+        render_refresh_button()
         render_ops_panel(status)
     st.stop()
 
@@ -355,6 +373,7 @@ with st.sidebar:
             st.session_state.selected_episode = lab
             st.rerun()
     st.divider()
+    render_refresh_button()
     with st.expander("Ops", expanded=False):
         st.caption("Engineering controls only.")
         render_ops_panel(status)
@@ -370,14 +389,22 @@ bank = _esc((ep.get("bank") or "").upper())
 neg = ep.get("topic1_neg_share")
 neg_s = f"{float(neg):.0%}" if isinstance(neg, (int, float)) else "—"
 
-def load_agreement() -> dict | None:
-    path = PIPELINE_ROOT / "docs" / "assignment2" / "label_agreement.json"
+def load_json_doc(*parts: str) -> dict | None:
+    path = PIPELINE_ROOT.joinpath(*parts)
     if path.exists():
         try:
             return json.loads(path.read_text())
         except Exception:
             return None
     return None
+
+
+def load_agreement() -> dict | None:
+    return load_json_doc("docs", "assignment2", "label_agreement.json")
+
+
+def load_m2a() -> dict | None:
+    return load_json_doc("docs", "assignment2", "human_labels", "m2a_agreement.json")
 
 
 # Context strip stays visible while switching tabs
@@ -399,6 +426,9 @@ st.caption(
 _agr = load_agreement()
 if _agr and _agr.get("pitch_line"):
     st.caption(_agr["pitch_line"])
+_m2a = load_m2a()
+if _m2a and _m2a.get("pitch_line"):
+    st.caption(_m2a["pitch_line"])
 
 tab_episodes, tab_evidence, tab_topics, tab_peer, tab_briefs, tab_pra = st.tabs(
     [
@@ -601,6 +631,31 @@ with tab_briefs:
         )
     else:
         st.caption("Run Pipeline `scripts/label_agreement.py` to refresh metrics.")
+
+    m2a = load_m2a()
+    st.markdown('<div class="section-h">8-way dual-code</div>', unsafe_allow_html=True)
+    if m2a:
+        st.caption(m2a.get("pitch_line") or "")
+        rows = []
+        for key in (
+            "machine_coder1_vs_coder2",
+            "machine_coder1_vs_aidan_pair",
+            "machine_coder2_vs_aidan_pair",
+        ):
+            block = m2a.get(key) or {}
+            if block:
+                rows.append(
+                    {
+                        "comparison": key,
+                        "n": block.get("n"),
+                        "agree": block.get("n_agree"),
+                        "pct": block.get("pct"),
+                    }
+                )
+        if rows:
+            st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
+    else:
+        st.caption("Run Pipeline `scripts/score_m2a_human.py` to refresh 8-way scores.")
 
 with tab_pra:
     st.markdown('<div class="section-h">PRA one-pager</div>', unsafe_allow_html=True)
